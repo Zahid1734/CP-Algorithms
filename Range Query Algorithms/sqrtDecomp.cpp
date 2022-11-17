@@ -19,7 +19,8 @@ public:
     int query(int l, int r) {
         int sum = 0;
         for (int i = l; i <= r;) {
-            if ((i / B) * B >= l && (i / B) * B + (B - 1) <= r) sum += b[i / B], i += B;
+            int blk = i / B;
+            if ((blk) * B >= l && (blk) * B + (B - 1) <= r) sum += b[blk], i += B;
             else sum += a[i], i++;
         }
         return sum;
