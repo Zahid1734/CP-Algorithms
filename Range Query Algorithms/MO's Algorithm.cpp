@@ -45,7 +45,7 @@ int getAns(int l, int r) {
 }
  
 vector<int> mo_s_algorithm (vector<Query> &query) {
-	int q = query,size();
+	int q = query.size();
 	sort(query.begin(), query.end());
 	vector<int> ans(q, 0);
 	int left = 0, right = -1;

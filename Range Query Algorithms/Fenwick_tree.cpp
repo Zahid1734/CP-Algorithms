@@ -1,6 +1,3 @@
-#include <bits/stdc++.h>
-
-using namespace std;
 
 
 //Indexing is one based
@@ -24,7 +21,7 @@ public:
     // one based indexing is used in l and r
     int query(int l, int r) {
         int ans = 0;
-        int res, ans2 = 0;
+        int ans2 = 0;
         l--;
         while (l > 0) {
             ans += bit[l];
