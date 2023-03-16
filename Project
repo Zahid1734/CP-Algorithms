@@ -1,0 +1,75 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+const int N = 101;
+vector<vector<int>> adj(N);
+vector<int> par(N);
+vector<vector<int>> cost(N, vector<int> (N, INT_MAX));
+vector<int> dist(N, INT_MAX);
+
+queue<int> q;
+
+void dijkstra() {
+    while (!q.empty()) {
+        int p = q.front();
+        q.pop();
+        for (auto v : adj[p]) {
+            if (dist[v] > dist[p] + cost[p][v]) {
+                dist[v] = dist[p] + cost[p][v];
+                par[v] = p;
+                q.push(v);
+            }
+        }
+    }
+}
+
+int main() {
+	ios_base :: sync_with_stdio(NULL);
+	cin.tie(NULL);
+
+    freopen("input.txt", "r", stdin);
+
+    int n, m;
+	cout << "Enter the number of nodes: ";
+	cin >> n;
+
+    cout << "Enter the number of edges: ";
+    cin >> m;
+
+    cout << "Enter the edges and their corresponding weights: ";
+
+    for (int i = 0; i < m; i++) {
+        int u, v, w;
+        cin >> u >> v >> w;
+        adj[u].push_back(v);
+        adj[v].push_back(u);
+        cost[u][v] = min(cost[u][v], w);
+        cost[v][u] = min(cost[v][u], w);
+    }
+
+    int source;
+    cout << "Enter the source node: ";
+    cin >> source;
+    int dest;
+    cout << "Enter the destination node: ";
+    cin >> dest;
+    dist[source] = 0;
+    q.push(source);
+    dijkstra();
+    cout << "The minimum cost of going from node " << source << " to node " << dest << " is " << dist[dest] << "\n";
+    cout << "The path: ";
+    vector<int> v;
+    int node = dest;
+    while (node != source) {
+        v.push_back(node);
+        node = par[node];
+    }
+    v.push_back(node);
+    reverse(v.begin(), v.end());
+    for (int i = 0; i < v.size(); i++) {
+        cout << v[i] << " ";
+    }
+    cout << "\n";
+	return 0;
+}
