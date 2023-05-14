@@ -1,6 +1,7 @@
 
 #ifdef ZAHID_LOCAL
     #define _GLIBCXX_DEBUG
+	#define _GLIBCXX_DEBUG_PEDANTIC
 #endif
 
 #include <bits/stdc++.h>
@@ -28,6 +29,8 @@ using ull = unsigned long long;
 #define second ss
 #define ff first
 #define PI acos(-1)
+#define all(a) a.begin(), a.end()
+#define allr(a) a.rbegin(), a.rend()
 #define setbit(a, b) (a |= (1LL << b))
 #define checkbit(a, b) (a & (1LL << b))
 #define countbit(a) __builtin_popcount(a) // use __builtin_popcountll for long long
@@ -46,8 +49,8 @@ void solve() {
 }
 
 int main() {
-    ios_base::sync_with_stdio(NULL);
-    cin.tie(NULL);
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
     
     int tt = 1;
     //cin >> tt;
