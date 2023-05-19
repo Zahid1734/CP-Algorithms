@@ -1,4 +1,3 @@
-
 #ifdef ZAHID_LOCAL
     #define _GLIBCXX_DEBUG
 	#define _GLIBCXX_DEBUG_PEDANTIC
@@ -26,7 +25,8 @@ using ll = long long;
 using ull = unsigned long long;
 
 #define eb emplace_back
-#define second ss
+#define mp make_pair
+#define ss second
 #define ff first
 #define PI acos(-1)
 #define all(a) a.begin(), a.end()
@@ -53,7 +53,7 @@ int main() {
     cin.tie(nullptr);
     
     int tt = 1;
-    //cin >> tt;
+    cin >> tt;
     for (int i = 1; i <= tt; i++) {
         //cout << "Case " << i << ": ";
         solve();
