@@ -61,9 +61,9 @@ typedef struct polyHash {
   //pos in one based indexed
   inline unsigned long long getReverse(int pos, int l) {
     pos = len - (pos + l) + 2;
-    int one = (rev_hash1[pos + l - 1] - 1LL * rev_hash1[pos - 1] * P1[pos] % m1) % m1;
+    int one = (rev_hash1[pos + l - 1] - 1LL * rev_hash1[pos - 1] * P1[l] % m1) % m1;
     if (one < 0) one += m1;
-    int two = (rev_hash2[pos + l - 1] - 1LL * rev_hash2[pos - 1] * P2[pos] % m2) % m2;
+    int two = (rev_hash2[pos + l - 1] - 1LL * rev_hash2[pos - 1] * P2[l] % m2) % m2;
     if (two < 0) two += m2;
     unsigned long long ans = one;
     ans <<= 32;
