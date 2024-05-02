@@ -23,12 +23,12 @@ public:
 		return (res < 0 ? res + mod : res) ;
 	}
 	int genBase(const int start, int end) {
-	auto seed = std::chrono::high_resolution_clock::now().time_since_epoch().count();
-	std::mt19937 mt_rand(seed);
-	int base = std::uniform_int_distribution<int> (start + 1, end)(mt_rand);
-	base = (base & 1 ? base : base - 1);
-	return base;
-}	
+		auto seed = std::chrono::high_resolution_clock::now().time_since_epoch().count();
+		std::mt19937 mt_rand(seed);
+		base = std::uniform_int_distribution<int> (start + 1, end)(mt_rand);
+		base = (base & 1 ? base : base - 1);
+		return base;
+	}	
 private:
 	int len;
 	vector<int> hash, revHash;
