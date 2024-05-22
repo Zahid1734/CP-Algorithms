@@ -1,26 +1,30 @@
 #include <bits/stdc++.h>
+
 using namespace std;
+
 template<class T> 
 class sparseTable {
 public:
 	sparseTable() {}
-	sparseTable(int _n) {
+	sparseTable(int _n, vector<int> &a) {
 		n = _n;
-		log.resize(n + 1);
+		log.resize(n + 1); _a.resize(_n);
 		table.resize(n, vector<T>(log2(n) + 1));
 		log[1] = 0;
 		for (int i = 2; i <= n; i++) log[i] = log[i / 2] + 1; 
+		for(int i = 0; i < n; i++) _a[i] = a[i];
+		makeTable();
 	}
 	// function to prepare the table for query
-	void makeTable(vector<T> &a) {
+	void makeTable() {
 		for (int i = 0; i < n; i++) {
 			table[i][0] = i;
 		}
 		int mxJump = log[n];
 		for (int j = 1; j <= mxJump; j++) {
 			for (int i = 0; i + (1 << j) - 1 < n; i++) {
-				T val = min(a[table[i][j - 1]], a[table[i + (1 << (j - 1))][j - 1]]);
-				table[i][j] = (val == a[table[i][j - 1]] ? table[i][j - 1] : table[i + (1 << (j - 1))][j - 1]);
+				T val = min(_a[table[i][j - 1]], _a[table[i + (1 << (j - 1))][j - 1]]);
+				table[i][j] = (val == _a[table[i][j - 1]] ? table[i][j - 1] : table[i + (1 << (j - 1))][j - 1]);
 			}
 		}
 	}
@@ -29,12 +33,14 @@ public:
 	T query(int L, int R) {
 		int gap = R - L + 1;
 		int gapLog = log[gap];
-		return min(table[L][gapLog], table[R - (1 << gapLog) + 1][gapLog]);
+		T val = min(_a[table[L][gapLog]], _a[table[R - (1 << gapLog) + 1][gapLog]]); 
+		return (val == _a[table[L][gapLog]] ? table[L][gapLog] : table[R - (1 << gapLog) + 1][gapLog]);
 	}
 
 private:
 	int n;
 	vector<vector<T>> table;
+	vector<T> _a;
 	vector<int> log;
 };
 
@@ -62,8 +68,7 @@ public:
 		}
 	}
 	void prepareTable() {
-		st = sparseTable<int> (2 * n - 1);
-		st.makeTable(depth);
+		st = sparseTable<int> (2 * n - 1, depth);
 	}
 	int findLca(int u, int v) {
 		int L = last[u], R = last[v];
@@ -79,16 +84,35 @@ private:
 	int id;
 };
 
-int main() {
+void solve(int t) {
+	cout << "Case " << t << ":\n";
 	int n; cin >> n;
+	ancestor<int> ances(n);
 	vector<vector<int>> adj(n);
-	for (int i = 0; i < n - 1; i++) {
-		int u, v; cin >> u >> v;
-		adj[u].push_back(v);
+	for(int i = 0; i < n; i++) {
+		int x; cin >> x;
+		for (int j = 0; j < x; j++) {
+			int v; cin >> v;
+			adj[i].push_back(v - 1);
+		}
 	}
-	ancestor<int> anscs(n);
-	anscs.makeTour(adj, 0, 0);
-	anscs.prepareTable();
-	cout << anscs.findLca(1, 4);
+	ances.makeTour(adj, 0, 0);
+	ances.prepareTable();
+	int q; cin >> q;
+	while(q--) {
+		int u, v; cin >> u >> v;
+		int res = ances.findLca(u - 1, v - 1);
+		cout << res + 1 << "\n";
+	}
+}
+
+int main() {
+	ios_base :: sync_with_stdio(false);
+	cin.tie(nullptr);
+
+	int tc = 1; cin >> tc;
+	for (int t = 1; t <= tc; t++) {
+		solve(t);
+	}
 	return 0;
 }
