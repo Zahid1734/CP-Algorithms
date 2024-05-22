@@ -89,6 +89,6 @@ int main() {
 	ancestor<int> anscs(n);
 	anscs.makeTour(adj, 0, 0);
 	anscs.prepareTable();
-	cout << anscs.findLca(1, 4) << "\n";
+	cout << anscs.findLca(1, 4);
 	return 0;
 }
