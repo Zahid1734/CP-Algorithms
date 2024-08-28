@@ -12,10 +12,10 @@ int main() {
 
 	freopen("in", "w", stdout);
 
-	int n = gen(1, 10000); 
+	int n = gen(1, 10); 
 	cout << n << "\n";
 	for (int i = 0; i < n; i++) {
-		int x = gen(1, 1000000);
+		int x = gen(1, 20);
 		cout << x << " ";
 	}
 

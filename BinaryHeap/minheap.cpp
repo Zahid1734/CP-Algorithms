@@ -1,6 +1,5 @@
 #include <bits/stdc++.h>
 
-
 using namespace std;
 
 #ifdef LOCAL
@@ -8,8 +7,6 @@ using namespace std;
 #else 
     #define dbg(...) 43
 #endif
-
-
 
 class min_heap {
 public:
@@ -88,7 +85,7 @@ int main() {
 	for (int i = 0; i < n; i++) {
 		int x = *st.begin();
 		st.erase(st.begin());
-		//dbg(st); 
+		dbg(st); 
 		int xx = heap.remove_min();
 		//dbg(heap.heap);
 		if (xx - x) {
