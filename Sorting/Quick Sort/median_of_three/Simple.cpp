@@ -17,8 +17,19 @@ void QuickSort(vector<T> &a, int l, int r) {
 
     if (r <= l) return ;
 
-    int ind = generate(l, r);
-    int x = a[ind];
+    int ind1 = generate(l, r);
+    int ind2 = generate(l, r);
+    int ind3 = generate(l, r);
+    int ind4 = generate(l, r);
+    int ind5 = generate(l, r);
+
+    int b[] = {a[ind1], a[ind2], a[ind3], a[ind4], a[ind5]};
+    for (int i = 0; i < 4; i++) {
+        for (int j = i + 1; j < 5; j++) {
+            if (b[j] < b[i]) swap(b[j], b[i]);
+        }
+    }
+    int x = b[1]; // Take the median of the three values 
     int i = l, m = l;
     while(i <= r) {
         if (a[i] < x) {
@@ -27,7 +38,7 @@ void QuickSort(vector<T> &a, int l, int r) {
         }
         i++;
     } 
-    ind = m - 1;
+    int ind = m - 1;
     for (int i = m; i <= r; i++) {
         if (a[i] == x) {
             swap(a[i], a[m++]);

@@ -16,7 +16,7 @@ int main() {
 
     srand(time(0));
 
-    int n = generate(100000, 100000);
+    int n = generate(10000, 10000);
 
     cout << n << "\n";
     for (int i = 0; i < n; i++) {
