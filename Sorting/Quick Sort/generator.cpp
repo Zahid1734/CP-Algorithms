@@ -16,11 +16,11 @@ int main() {
 
     srand(time(0));
 
-    int n = generate(1, 1000);
+    int n = generate(100000, 100000);
 
     cout << n << "\n";
     for (int i = 0; i < n; i++) {
-        cout << generate(1, 100000) << " ";
+        cout << generate(1, 1000000) << " ";
     }
 
     cout << "\n";

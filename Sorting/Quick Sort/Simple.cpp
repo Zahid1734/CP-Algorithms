@@ -14,6 +14,7 @@ int generate(int a, int b) {
 
 template<typename T> 
 void QuickSort(vector<T> &a, int l, int r) {
+
     if (r <= l) return ;
 
     int ind = generate(l, r);
@@ -26,7 +27,13 @@ void QuickSort(vector<T> &a, int l, int r) {
         }
         i++;
     } 
-    QuickSort(a, l, m - 1);
+    ind = m - 1;
+    for (int i = m; i <= r; i++) {
+        if (a[i] == x) {
+            swap(a[i], a[m++]);
+        }
+    }
+    QuickSort(a, l, ind);
     QuickSort(a, m, r);
 }
 
@@ -39,7 +46,6 @@ int main() {
         cin >> b[i];
     }
     QuickSort(b, 0, n - 1);
-
     for (int i = 0; i < n; i++) {
         cout << b[i] << " ";
     }
