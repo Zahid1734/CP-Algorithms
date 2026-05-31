@@ -1,5 +1,5 @@
-#ifdef ZAHID_LOCAL
-    #define _GLIBCXX_DEBUG
+#ifdef LOCAL
+  #define _GLIBCXX_DEBUG
 	#define _GLIBCXX_DEBUG_PEDANTIC
 #endif
 
@@ -15,7 +15,7 @@ template<typename T_container, typename T = typename enable_if<!is_same<T_contai
 
 void dbg_out() { cerr << endl; }
 template<typename Head, typename... Tail> void dbg_out(Head H, Tail... T) { cerr << ' ' << H; dbg_out(T...); }
-#ifdef ZAHID_LOCAL
+#ifdef LOCAL
 #define dbg(...) cerr << "(" << #__VA_ARGS__ << "):", dbg_out(__VA_ARGS__)
 #else
 #define dbg(...)
@@ -45,17 +45,17 @@ using ull = unsigned long long;
 // order_of_key(x) -> number of items strictly smaller than x
 
 void solve() {
-    
+  
 }
 
 int main() {
-    ios_base::sync_with_stdio(false);
-    cin.tie(nullptr);
-    
-    int tt = 1;
-    cin >> tt;
-    for (int i = 1; i <= tt; i++) {
-        //cout << "Case " << i << ": ";
-        solve();
-    }
+	ios_base::sync_with_stdio(false);
+	cin.tie(nullptr);
+	
+	int tt = 1;
+	cin >> tt;
+	for (int i = 1; i <= tt; i++) {
+			//cout << "Case " << i << ": ";
+			solve();
+	}
 }
